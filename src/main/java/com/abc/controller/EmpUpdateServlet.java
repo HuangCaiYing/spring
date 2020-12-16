@@ -1,8 +1,9 @@
 package com.abc.controller;
 
 import com.abc.common.Comm;
+import com.abc.common.SpringIOC;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IEmpService;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -29,7 +31,7 @@ public class EmpUpdateServlet extends HttpServlet {
             e.printStackTrace();
         }
         BigDecimal sal=new BigDecimal(request.getParameter("sal"));
-        IEmpService empService=(IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService= (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         Emp emp=new Emp(empno,ename,hiredate,sal);
         String msg=empService.update(emp);
         if(Comm.SUCCESS.equals(msg)){

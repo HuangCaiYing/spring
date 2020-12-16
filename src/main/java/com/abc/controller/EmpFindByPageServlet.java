@@ -1,8 +1,9 @@
 package com.abc.controller;
 
 import com.abc.common.Comm;
+import com.abc.common.SpringIOC;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IEmpService;
 
 import javax.servlet.ServletException;
@@ -33,7 +34,7 @@ public class EmpFindByPageServlet extends HttpServlet {
         if (sizeParam != null && !"".equals(sizeParam.trim())) {
             size = Integer.parseInt(sizeParam);
         }
-        IEmpService empService = (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         List<Emp> emps = empService.findByPage(page, size);
         //反馈--JAVA模板引擎 因为运行的是jsp页面，所以反馈要用JAVA模板引擎（直接传参，直接处理）
         //如果emps不等于空，并且emps.size()>0，说明集合里面有数据

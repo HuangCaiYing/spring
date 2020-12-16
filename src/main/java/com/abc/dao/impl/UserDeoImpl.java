@@ -3,11 +3,12 @@ package com.abc.dao.impl;
 import com.abc.dao.entity.User;
 import com.abc.dao.idao.IUserDeo;
 import com.abc.dao.util.DBUtil;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+@Repository("userDeo")
 public class UserDeoImpl implements IUserDeo {
 
     @Override

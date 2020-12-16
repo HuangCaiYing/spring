@@ -6,17 +6,17 @@ import com.abc.common.ResEnum;
 import com.abc.controller.vo.DelVO;
 import com.abc.dao.entity.Dept;
 import com.abc.dao.entity.Emp;
-import com.abc.dao.factory.DaoFactory;
+
 import com.abc.dao.idao.IEmpDeo;
 import com.abc.service.iservice.IEmpService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service("empService")
 public class EmpServiceImpl implements IEmpService {
+    @Autowired
     IEmpDeo empDeo;
-    public EmpServiceImpl(){
-        empDeo=(IEmpDeo) DaoFactory.getInstance(Comm.EMP);
-    }
     @Override
     public List<Emp> findByPage(int page, int size) {
         List<Emp> emps=null;
