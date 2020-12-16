@@ -1,0 +1,14 @@
+[
+	{
+		"empno":1001,
+		"ename":"zhao",
+		"hiredate":"2020-10-10",
+		"sal":12345
+	},
+	{
+		"empno":1002,
+		"ename":"wang",
+		"hiredate":"2020-12-10",
+		"sal":25655
+	}
+]
