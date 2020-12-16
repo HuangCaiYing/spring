@@ -1,15 +1,19 @@
 package com.abc.ssm.spring;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
     private int pid;
     private String pname;
+    private Phone phone;
 
     public Person() {
     }
 
-    public Person(int pid, String pname) {
+    public Person(int pid, String pname, Phone phone) {
         this.pid = pid;
         this.pname = pname;
+        this.phone=phone;
     }
 
     @Override
@@ -17,7 +21,16 @@ public class Person {
         return "Person{" +
                 "pid=" + pid +
                 ", pname='" + pname + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
+    }
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
     }
 
     public int getPid() {
