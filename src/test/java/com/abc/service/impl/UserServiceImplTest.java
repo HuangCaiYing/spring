@@ -1,5 +1,6 @@
 package com.abc.service.impl;
 
+import com.abc.dao.entity.User;
 import com.abc.service.iservice.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,8 @@ public class UserServiceImplTest {
 
     @Test
     public void login() {
-
+       //前后端分离
+        User user=new User("root","root");
+       System.out.println(userService.login(user));
     }
 }

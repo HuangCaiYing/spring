@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    MyBatis性能配置-->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="defaultStatementTimeout" value="3000"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="useGeneratedKeys" value="true"/>
+    </settings>
+
+<!--&lt;!&ndash;别名，必须设置在settings之后&ndash;&gt;-->
+<!--    <typeAliases>-->
+<!--        <typeAlias type="com.abc.ssm.mybatis.dao" alias="User"/>-->
+<!--    </typeAliases>-->
+
+</configuration>
