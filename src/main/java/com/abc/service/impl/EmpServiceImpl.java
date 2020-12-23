@@ -15,13 +15,14 @@ import java.util.List;
 @Service("empService")
 public class EmpServiceImpl implements IEmpService {
     @Autowired
-    EmpDao empDeo;
+    EmpDao empDao;
+
     @Override
     public List<Emp> findByPage(int page, int size) {
-        List<Emp> emps=null;
+        List<Emp> emps = null;
         try {
-            emps=empDeo.findByPage((page-1)*size,size);
-        }catch (Exception e){
+            emps = empDao.findByPage((page - 1) * size, size);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return emps;
@@ -31,7 +32,7 @@ public class EmpServiceImpl implements IEmpService {
     public List<Emp> findByName(String ename) {
         List<Emp> emps = null;
         try {
-            emps =empDeo.findByName(ename);
+            emps = empDao.findByName(ename);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,7 +43,7 @@ public class EmpServiceImpl implements IEmpService {
     public Emp findById(Integer empno) {
         Emp emp = null;
         try {
-            emp =empDeo.findById(empno);
+            emp = empDao.findById(empno);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,10 +52,10 @@ public class EmpServiceImpl implements IEmpService {
 
     @Override
     public String delete(Emp emp) {
-        String msg=Comm.ERROR;
+        String msg = Comm.ERROR;
         try {
-            empDeo.delete(emp);
-            msg=Comm.SUCCESS;
+            empDao.delete(emp);
+            msg = Comm.SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,10 +64,10 @@ public class EmpServiceImpl implements IEmpService {
 
     @Override
     public String save(Emp emp) {
-        String msg=Comm.ERROR;
+        String msg = Comm.ERROR;
         try {
-            empDeo.save(emp);
-            msg=Comm.SUCCESS;
+            empDao.save(emp);
+            msg = Comm.SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -75,10 +76,10 @@ public class EmpServiceImpl implements IEmpService {
 
     @Override
     public String update(Emp emp) {
-        String msg=Comm.ERROR;
+        String msg = Comm.ERROR;
         try {
-            empDeo.update(emp);
-            msg=Comm.SUCCESS;
+            empDao.update(emp);
+            msg = Comm.SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,26 +90,28 @@ public class EmpServiceImpl implements IEmpService {
     public Res<List<Emp>> findByDept(int deptno) {
         List<Emp> emps = null;
         try {
-            emps =empDeo.findByDept(deptno);
+            emps = empDao.findByDept(deptno);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return (emps != null&& emps.size()>0)?Res.success(ResEnum.SUCCESS,emps):Res.error();
+        return (emps != null && emps.size() > 0) ? Res.success(ResEnum.SUCCESS, emps) : Res.error();
     }
 
     @Override
     public Res delBatch(List<DelVO> delVOList) {
-        if (delVOList==null||delVOList.size()==0){
-            return  Res.error(ResEnum.ERROR_PARAMS_IN_DELBATCH);
-        }
-        try{
-            empDeo.delBatch(delVOList);
-            return Res.success(ResEnum.SUCCESS_DEL_BATCH);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return Res.error();
+//        if (delVOList==null||delVOList.size()==0){
+//            return  Res.error(ResEnum.ERROR_PARAMS_IN_DELBATCH);
+//        }
+//        try{
+//            empDao.delBatch(delVOList);
+//            return Res.success(ResEnum.SUCCESS_DEL_BATCH);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//       return Res.error();
+return null;
     }
+
 }
 
 

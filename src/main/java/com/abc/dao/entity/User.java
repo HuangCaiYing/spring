@@ -23,6 +23,9 @@ public class User {
         this.password = password;
     }
 
+    public User() {
+    }
+
     public User(int id, String username, String password, int pri) {
         this.id = id;
         this.username = username;

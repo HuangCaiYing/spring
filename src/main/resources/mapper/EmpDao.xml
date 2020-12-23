@@ -4,7 +4,7 @@
 <mapper namespace="com.abc.dao.EmpDao">
     <!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要！-->
     <resultMap id="EmpResultMap" type="com.abc.dao.entity.Emp">
-        <id column="EMPNO" property="enpno" jdbcType="INTEGER" />
+        <id column="EMPNO" property="empno" jdbcType="INTEGER" />
         <result column="ENAME" property="ename" jdbcType="VARCHAR" />
         <result column="HIREDATE" property="hiredate" jdbcType="DATE" />
         <result column="SAL" property="sal" jdbcType="DECIMAL" />
@@ -14,4 +14,81 @@
         empno,ename,hiredate,sal
     </sql>
 
+    <select id="findByPage" parameterType="map" resultMap="EmpResultMap">
+        select <include refid="AllEmpColumns"/> from emp limit #{start},#{size}
+    </select>
+    <select id="findByName" parameterType="map" resultMap="EmpResultMap">
+        select <include refid="AllEmpColumns"/> from emp where ename like concat('%',#{ename},'%')
+    </select>
+    <select id="findById" parameterType="map" resultMap="EmpResultMap">
+        select <include refid="AllEmpColumns"/> from emp where empno=#{empno}
+    </select>
+    <select id="findByDept" parameterType="int" resultMap="EmpResultMap">
+        select <include refid="AllEmpColumns"/>
+        from emp
+        where deptno=#{deptno}
+    </select>
+    <insert id="save" useGeneratedKeys="true" keyProperty="empno">
+        insert  into emp(ename,hiredate,sal) values (#{ename},#{hiredate},#{sal})
+    </insert>
+    <update id="update">
+        update emp set ename=#{ename},hiredate=#{hiredate},sal=#{sal}
+    </update>
+    <delete id="delete">
+        delete from emp where empno=#{empno}
+    </delete>
+
+<!--动态SQL-->
+<select id="findByCon" parameterType="map" resultMap="EmpResultMap">
+    select
+    <include refid="AllEmpColumns"/>
+    from emp
+    <where>
+        <if test="ename !=null and ename != ''">
+            and ename like concat('%',#{ename},'%')
+        </if>
+        <if test="hiredate !=null">
+            and hiredate&lt;#{hiredate}
+        </if>
+        <if test="sal !=null">
+            and sal&gt;#{sal}
+        </if>
+    </where>
+</select>
+
+  <select id="dynamicUpdate">
+     update emp
+     <set>
+         <if test="ename !=null and ename != ''">
+             ename=#{ename}
+         </if>
+         <if test="hiredate !=null">
+             hiredate=#{hiredate}
+         </if>
+         <if test="sal !=null">
+             sal=#{sal}
+         </if>
+     </set>
+      where empno=#{empno}
+  </select>
+
+
+
+<!-- 批量删除-->
+    <select id="delBatch">
+        delete from emp where empno in
+        <foreach collection="list" index="idx" open="(" close=")"
+                 separator="," item="id">
+            #{id}
+        </foreach>
+    </select>
+
+<!-- 批量插入-->
+    <insert id="saveBatch">
+        insert  into emp(ename,hiredate,sal) values
+        <foreach collection="list" index="emps"
+                 separator="," item="empitem">
+            (#{empitem.ename},#{empitem.hiredate},#{empitem.sal})
+        </foreach>
+    </insert>
 </mapper>

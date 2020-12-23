@@ -7,7 +7,6 @@
         <id column="DEPTNO" property="deptno" jdbcType="INTEGER" />
         <result column="DNAME" property="dname" jdbcType="VARCHAR" />
         <result column="LOC" property="loc" jdbcType="VARCHAR" />
-
     </resultMap>
     <!--SQL片段-->
     <sql id="AllDeptColumns">
@@ -16,4 +15,5 @@
     <select id="findAll" resultMap="DeptResultMap">
         select <include refid="AllDeptColumns"/> from dept
     </select>
+
 </mapper>

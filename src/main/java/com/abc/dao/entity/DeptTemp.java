@@ -1,17 +1,26 @@
 package com.abc.dao.entity;
 
-import java.util.List;
-
-public class Dept {
+public class DeptTemp {
    private int deptno;
    private String dname;
+   private String loc;
 
+    public DeptTemp() {
 
-        @Override
+    }
+
+    public DeptTemp(int deptno, String dname, String loc) {
+        this.deptno = deptno;
+        this.dname = dname;
+        this.loc = loc;
+    }
+
+    @Override
     public String toString() {
         return "Dept{" +
                 "deptno=" + deptno +
                 ", dname='" + dname + '\'' +
+                ", loc='" + loc + '\'' +
                 '}';
     }
 
@@ -31,9 +40,11 @@ public class Dept {
         this.dname = dname;
     }
 
-    public Dept() {
-
+    public String getLoc() {
+        return loc;
     }
 
-
+    public void setLoc(String loc) {
+        this.loc = loc;
+    }
 }
